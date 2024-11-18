@@ -4,6 +4,11 @@ body {
     padding: 0;
     color: #1a1a1a;
     padding-top: 80px;
+
+    background-image: url('../images/background.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .container {
@@ -46,12 +51,12 @@ main section {
 
 .content h2:nth-child(1) {
     color: transparent;
-    -webkit-text-stroke: 2px #0000002c;
+    -webkit-text-stroke: 2px #faf5ee;
     font-weight: bold;
 }
 
 .content h2:nth-child(2) {
-    color: #cecece;
+    color: #faf5ee;
     font-weight: bold;
     animation: animate 4s ease-in-out infinite;
     font-weight: bold;
