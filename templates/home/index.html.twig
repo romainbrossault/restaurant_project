@@ -1,13 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil - Versailles{% endblock %}
+{% block title %}Accueil - Versailles
+{% endblock %}
 
 {% block body %}
-<main>
-    <div class="content">
-        <h2>Versailles</h2>
-        <h2>Versailles</h2>
-        <div class="wave"></div>
-    </div>
-</main>
+	<head>
+		<link rel="stylesheet" href="{{ asset('styles/parallax.css') }}">
+	</head>
+	<body>
+
+		<div class="parallax-container">
+			<div class="parallax-image"></div>
+			<h1 class="logo-image">VERSAILLES</h1>
+		</div>
+
+		<div class="home-container">
+			<div class="grid">
+				<div class="grid-item">
+
+					<h2>Offres spéciales ou cadeaux</h2>
+					</br>
+					<p> * bons cadeaux pour un dîner gastronomique, parfaits à offrir pour Noël.</p>
+					</br>
+					<p> * offres spéciales pour les groupes, les entreprises et les événements.</p>
+					</div>
+
+				<div class="grid-item">
+
+					<h2>Actualités et collaborations</h2>
+					</br>
+					<p> * découvrez les dernières actualités et collaborations de notre restaurant.</p>
+					</br>
+					<p> * suivez-nous sur les réseaux sociaux pour ne rien manquer.</p>
+				
+				</div>
+				
+				<div class="grid-item">Contenu 3</div>
+
+				<div class="grid-item">Contenu 4</div>
+
+			</div>
+
+		</div>
+
+	</body> 
+	<script src="{{ asset('scripts/parallax.js') }}"></script>
 {% endblock %}
