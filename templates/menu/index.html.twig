@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Menu{% endblock %}
+
+{% block body %}
+<h1>Notre Menu</h1>
+<div class="menu-container">
+    <div class="menu-section">
+        <h2>Entrées</h2>
+        <ul>
+            <li>
+                <span class="dish-name">Salade César</span>
+                <span class="dish-price">10€</span>
+            </li>
+            <li>
+                <span class="dish-name">Soupe à l'oignon</span>
+                <span class="dish-price">8€</span>
+            </li>
+        </ul>
+    </div>
+    <div class="menu-section">
+        <h2>Plats Principaux</h2>
+        <ul>
+            <li>
+                <span class="dish-name">Steak Frites</span>
+                <span class="dish-price">18€</span>
+            </li>
+            <li>
+                <span class="dish-name">Poulet Rôti</span>
+                <span class="dish-price">15€</span>
+            </li>
+        </ul>
+    </div>
+    <div class="menu-section">
+        <h2>Desserts</h2>
+        <ul>
+            <li>
+                <span class="dish-name">Tarte Tatin</span>
+                <span class="dish-price">7€</span>
+            </li>
+            <li>
+                <span class="dish-name">Crème Brûlée</span>
+                <span class="dish-price">6€</span>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

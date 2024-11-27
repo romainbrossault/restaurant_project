@@ -14,16 +14,15 @@
 		<link rel="stylesheet" href="{{ asset('styles/home.css') }}">
 		<link rel="stylesheet" href="{{ asset('styles/footer.css') }}">
 		<link rel="stylesheet" href="{{ asset('styles/intro.css') }}">
+		<link rel="stylesheet" href="{{ asset('styles/menu.css') }}">
+		<link rel="stylesheet" href="{{ asset('styles/form.css') }}">
 	</head>
 	<body>
-		<div id="intro">
-			<img src="{{ asset('images/icon.png') }}" alt="Restaurant Logo">
-		</div>
 		{% include 'components/navbar.html.twig' %}
 		{% block body %}{% endblock %}
 		{% include 'components/footer.html.twig' %}
 	 <script src="{{ asset('scripts/navbar.js') }}"></script>
 		 <script src="{{ asset('scripts/home.js') }}"></script>
-		 <script src="{{ asset('scripts/intro.js')}}"></script>
+		 
 	</body>
 </html>
