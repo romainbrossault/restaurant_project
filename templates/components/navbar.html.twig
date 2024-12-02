@@ -7,8 +7,14 @@
             <ul>
                 <li><a href="{{ path('home') }}">Home</a></li>
                 <li><a href="{{ path('menu') }}">Menu</a></li>
-                <li><a href="{{ path('reservation') }}">Reservation</a></li>
-                <li><a class="nav-link" href="{{ path('app_login') }}">Login</a></li>
+                <li><a href="{{ path('reservation_index') }}">Reservation</a></li>
+
+                {% if app.user %}
+                <li><a href="{{ path('account') }}">{{ app.user.firstName }}</a></li>
+                <li><a href="{{ path('app_logout') }}">Logout</a></li>
+                {% else %}
+                <li><a href="{{ path('app_login') }}">Login</a></li>
+                {% endif %}
             </ul>
         </nav>
     </div>

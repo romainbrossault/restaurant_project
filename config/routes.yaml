@@ -14,4 +14,3 @@ app_logout:
 reservation_index:
     path: /reservation
     controller: App\Controller\ReservationController::index
-    methods: GET

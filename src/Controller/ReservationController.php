@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Reservation;
+use App\Form\ReservationType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ReservationController extends AbstractController
 {
     #[Route(path: '/reservation', name: 'reservation_index')]
-    public function index(Request $request): Response
+    public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
         $reservation = new Reservation();
         $form = $this->createForm(ReservationType::class, $reservation);
@@ -25,6 +28,8 @@ class ReservationController extends AbstractController
             return $this->redirectToRoute('reservation');
         }
 
-        return $this->render('reservation/index.html.twig');
+        return $this->render('reservation/index.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }

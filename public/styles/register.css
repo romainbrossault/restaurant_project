@@ -1,5 +1,4 @@
 body {
-    padding-top: 100px;
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     color: #333333;
@@ -7,7 +6,7 @@ body {
     padding: 0;
 }
 
-.login-container {
+.register-container {
     max-width: 400px;
     margin: 100px auto;
     padding: 20px;
@@ -55,9 +54,3 @@ h1 {
     background-color: #0056b3;
     border-color: #004085;
 }
-
-.register-link {
-    text-align: center;
-    margin-top: 15px;
-}
-

@@ -3,33 +3,53 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
-    {{ form_start(registrationForm) }}
-        <div class="form-group">
-            {{ form_label(registrationForm.first_name) }}
-            {{ form_widget(registrationForm.first_name, {'attr': {'class': 'form-control'}}) }}
-            {{ form_errors(registrationForm.first_name) }}
+    <div class="register-container">
+        <h1>Register</h1>
+        <form action="{{ path('app_register') }}" method="post" class="form-horizontal">
+            <div class="form-group">
+                <label for="first_name" class="col-sm-2 control-label">First Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" id="first_name" name="registrationForm[first_name]" class="form-control" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="last_name" class="col-sm-2 control-label">Last Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" id="last_name" name="registrationForm[last_name]" class="form-control" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="phone_number" class="col-sm-2 control-label">Phone Number:</label>
+                <div class="col-sm-10">
+                    <input type="text" id="phone_number" name="registrationForm[phone_number]" class="form-control" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email" class="col-sm-2 control-label">Email:</label>
+                <div class="col-sm-10">
+                    <input type="email" id="email" name="registrationForm[email]" class="form-control" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="col-sm-2 control-label">Password:</label>
+                <div class="col-sm-10">
+                    <input type="password" id="password" name="registrationForm[password][first]" class="form-control" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password" class="col-sm-2 control-label">Confirm Password:</label>
+                <div class="col-sm-10">
+                    <input type="password" id="confirm_password" name="registrationForm[password][second]" class="form-control" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+            </div>
+        </form>
+        <div class="login-link">
+            <p>Already have an account? <a href="{{ path('app_login') }}">Login here</a></p>
         </div>
-        <div class="form-group">
-            {{ form_label(registrationForm.last_name) }}
-            {{ form_widget(registrationForm.last_name, {'attr': {'class': 'form-control'}}) }}
-            {{ form_errors(registrationForm.last_name) }}
-        </div>
-        <div class="form-group">
-            {{ form_label(registrationForm.phone_number) }}
-            {{ form_widget(registrationForm.phone_number, {'attr': {'class': 'form-control'}}) }}
-            {{ form_errors(registrationForm.phone_number) }}
-        </div>
-        <div class="form-group">
-            {{ form_label(registrationForm.email) }}
-            {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
-            {{ form_errors(registrationForm.email) }}
-        </div>
-        <div class="form-group">
-            {{ form_label(registrationForm.password) }}
-            {{ form_widget(registrationForm.password, {'attr': {'class': 'form-control'}}) }}
-            {{ form_errors(registrationForm.password) }}
-        </div>
-        <button type="submit" class="btn btn-primary">Register</button>
-    {{ form_end(registrationForm) }}
+    </div>
 {% endblock %}

@@ -4,9 +4,11 @@ namespace App\Entity;
 
 use App\Repository\CustomerRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: CustomerRepository::class)]
-class Customer
+class Customer implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -22,11 +24,14 @@ class Customer
     #[ORM\Column(length: 20)]
     private ?string $phone_number = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
     private ?string $password = null;
+
+    #[ORM\Column(type: 'json')]
+    private array $roles = []; // Initialisation par défaut à un tableau vide
 
     public function getCustomerId(): ?int
     {
@@ -86,5 +91,30 @@ class Customer
     {
         $this->password = $password;
         return $this;
+    }
+
+    public function getRoles(): array
+    {
+        // Toujours inclure ROLE_USER comme rôle par défaut
+        $roles = $this->roles;
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): static
+    {
+        $this->roles = $roles;
+        return $this;
+    }
+
+    public function eraseCredentials()
+    {
+        // Si des données sensibles sont stockées temporairement, nettoyez-les ici
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->email;
     }
 }
