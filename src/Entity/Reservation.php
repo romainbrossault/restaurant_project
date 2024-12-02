@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Entity;
 
 use App\Repository\ReservationRepository;
@@ -14,68 +13,89 @@ class Reservation
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $Date = null;
+    #[ORM\Column]
+    private ?int $customerId = null;
 
     #[ORM\Column]
-    private ?int $numberOfPeople = null;
+    private ?int $tableId = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $firstname = null;
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $reservationDate = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $lastName = null;
+    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    private ?\DateTimeInterface $reservationTime = null;
 
-    public function getId(): ?int
+    #[ORM\Column]
+    private ?int $guestCount = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $specialRequests = null;
+
+    // Getters and setters for the new fields...
+
+    public function getCustomerId(): ?int
     {
-        return $this->id;
+        return $this->customerId;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function setCustomerId(int $customerId): static
     {
-        return $this->Date;
-    }
-
-    public function setDate(\DateTimeInterface $Date): static
-    {
-        $this->Date = $Date;
-
+        $this->customerId = $customerId;
         return $this;
     }
 
-    public function getNumberOfPeople(): ?int
+    public function getTableId(): ?int
     {
-        return $this->numberOfPeople;
+        return $this->tableId;
     }
 
-    public function setNumberOfPeople(int $numberOfPeople): static
+    public function setTableId(int $tableId): static
     {
-        $this->numberOfPeople = $numberOfPeople;
-
+        $this->tableId = $tableId;
         return $this;
     }
 
-    public function getFirstname(): ?string
+    public function getReservationDate(): ?\DateTimeInterface
     {
-        return $this->firstname;
+        return $this->reservationDate;
     }
 
-    public function setFirstname(string $firstname): static
+    public function setReservationDate(\DateTimeInterface $reservationDate): static
     {
-        $this->firstname = $firstname;
-
+        $this->reservationDate = $reservationDate;
         return $this;
     }
 
-    public function getLastName(): ?string
+    public function getReservationTime(): ?\DateTimeInterface
     {
-        return $this->lastName;
+        return $this->reservationTime;
     }
 
-    public function setLastName(string $lastName): static
+    public function setReservationTime(\DateTimeInterface $reservationTime): static
     {
-        $this->lastName = $lastName;
+        $this->reservationTime = $reservationTime;
+        return $this;
+    }
 
+    public function getGuestCount(): ?int
+    {
+        return $this->guestCount;
+    }
+
+    public function setGuestCount(int $guestCount): static
+    {
+        $this->guestCount = $guestCount;
+        return $this;
+    }
+
+    public function getSpecialRequests(): ?string
+    {
+        return $this->specialRequests;
+    }
+
+    public function setSpecialRequests(?string $specialRequests): static
+    {
+        $this->specialRequests = $specialRequests;
         return $this;
     }
 }

@@ -5,29 +5,28 @@
 {% block body %}
 <div class="reservation-container">
     <h1>Réservation</h1>
-
     {{ form_start(form) }}
         <div class="form-group">
-            {{ form_label(form.date) }}
-            {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
-            {{ form_errors(form.date) }}
+            {{ form_label(form.reservationDate) }}
+            {{ form_widget(form.reservationDate, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.reservationDate) }}
         </div>
         <div class="form-group">
-            {{ form_label(form.numberOfPeople) }}
-            {{ form_widget(form.numberOfPeople, {'attr': {'class': 'form-control'}}) }}
-            {{ form_errors(form.numberOfPeople) }}
+            {{ form_label(form.reservationTime) }}
+            {{ form_widget(form.reservationTime, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.reservationTime) }}
         </div>
         <div class="form-group">
-            {{ form_label(form.firstName) }}
-            {{ form_widget(form.firstName, {'attr': {'class': 'form-control'}}) }}
-            {{ form_errors(form.firstName) }}
+            {{ form_label(form.guestCount) }}
+            {{ form_widget(form.guestCount, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.guestCount) }}
         </div>
         <div class="form-group">
-            {{ form_label(form.lastName) }}
-            {{ form_widget(form.lastName, {'attr': {'class': 'form-control'}}) }}
-            {{ form_errors(form.lastName) }}
+            {{ form_label(form.specialRequests) }}
+            {{ form_widget(form.specialRequests, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.specialRequests) }}
         </div>
-        <button type="submit" class="btn btn-primary">{{ form_widget(form.save) }}</button>
+        <button type="submit" class="btn btn-primary">Réserver</button>
     {{ form_end(form) }}
 </div>
 {% endblock %}
