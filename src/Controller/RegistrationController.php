@@ -1,6 +1,5 @@
 <?php
 // src/Controller/RegistrationController.php
-
 namespace App\Controller;
 
 use App\Entity\Customer;
@@ -19,8 +18,8 @@ class RegistrationController extends AbstractController
     {
         $customer = new Customer();
         $form = $this->createForm(CustomerRegistrationFormType::class, $customer);
-
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $customer->setPassword(
                 $passwordHasher->hashPassword(
