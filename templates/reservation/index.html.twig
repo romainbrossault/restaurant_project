@@ -3,30 +3,38 @@
 {% block title %}Réservation{% endblock %}
 
 {% block body %}
-<div class="reservation-container">
-    <h1>Réservation</h1>
-    {{ form_start(form) }}
-        <div class="form-group">
-            {{ form_label(form.reservationDate) }}
-            {{ form_widget(form.reservationDate, {'attr': {'class': 'form-control'}}) }}
-            {{ form_errors(form.reservationDate) }}
-        </div>
-        <div class="form-group">
-            {{ form_label(form.reservationTime) }}
-            {{ form_widget(form.reservationTime, {'attr': {'class': 'form-control'}}) }}
-            {{ form_errors(form.reservationTime) }}
-        </div>
-        <div class="form-group">
-            {{ form_label(form.guestCount) }}
-            {{ form_widget(form.guestCount, {'attr': {'class': 'form-control'}}) }}
-            {{ form_errors(form.guestCount) }}
-        </div>
-        <div class="form-group">
-            {{ form_label(form.specialRequests) }}
-            {{ form_widget(form.specialRequests, {'attr': {'class': 'form-control'}}) }}
-            {{ form_errors(form.specialRequests) }}
-        </div>
-        <button type="submit" class="btn btn-primary">Réserver</button>
-    {{ form_end(form) }}
-</div>
+    <link rel="stylesheet" href="{{ asset('styles/form.css') }}">
+    <div class="reservation-container">
+        <h1>Réservation</h1>
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger">
+                {{ message|raw }}
+            </div>
+        {% endfor %}
+        {% if app.user %}
+            {{ form_start(form) }}
+            <div class="form-group">
+                {{ form_label(form.reservationDate) }}
+                {{ form_widget(form.reservationDate, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.reservationDate) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.reservationTime) }}
+                {{ form_widget(form.reservationTime, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.reservationTime) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.guestCount) }}
+                {{ form_widget(form.guestCount, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.guestCount) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.specialRequests) }}
+                {{ form_widget(form.specialRequests, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.specialRequests) }}
+            </div>
+            <button type="submit" class="btn btn-primary">Réserver</button>
+            {{ form_end(form) }}
+        {% endif %}
+    </div>
 {% endblock %}

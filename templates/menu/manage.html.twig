@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Menus{% endblock %}
+
+{% block body %}
+    <h1>Gestion des Menus</h1>
+    {{ form_start(form) }}
+    <div class="form-group">
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.name) }}
+    </div>
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+    {{ form_end(form) }}
+
+    <h2>Menus existants</h2>
+    <ul>
+        {% for menu in menus %}
+            <li>
+                {{ menu.name }}
+                <a href="{{ path('menu_delete', {'id': menu.id}) }}" class="btn btn-danger">Supprimer</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

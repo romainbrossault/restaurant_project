@@ -65,3 +65,7 @@ h1 {
 .dish-price {
     color: #4caf50;
 }
+
+form {
+    margin-top: 100px;
+}
