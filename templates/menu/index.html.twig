@@ -8,10 +8,15 @@
         {% for menu in menus %}
             <div class="menu-section">
                 <h2>{{ menu.name }}</h2>
+                {% for menuItem in menuItems %}
+                    {% if menuItem.menu.id == menu.id %}
+                        <li>{{ menuItem.item.name }}</li>
+                    {% endif %}
+                {% endfor %}
             </div>
         {% endfor %}
     </div>
-    {% if app.user %}
+    {% if app.user and app.user.email == 'admin@restaurant.com' %}
         <div class="menu-button-container">
             <a href="{{ path('menu_ges') }}" class="btn btn-primary">Gestion Menu</a>
         </div>

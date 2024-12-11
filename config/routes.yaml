@@ -14,3 +14,7 @@ app_logout:
 reservation_index:
     path: /reservation
     controller: App\Controller\ReservationController::index
+
+menu_show:
+    path: /menu/{id}
+    controller: App\Controller\MenuController::show

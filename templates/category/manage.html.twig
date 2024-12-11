@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion du Menu{% endblock %}
+
+{% block body %}
+  {% if app.user and app.user.email == 'admin@restaurant.com' %}
+    <link rel="stylesheet" href="{{ asset('styles/manage_theme.css') }}">
+    <div class="container-category">
+        <h1>Gestion du Menu: {{ category.name }}</h1>
+        <a href="{{ path('menu_ges') }}" class="btn btn-secondary">Retour</a>
+        
+        <button id="showItemFormButton" class="btn btn-primary">Ajouter un item</button>
+        <button id="hideItemFormButton" class="btn btn-secondary" style="display: none;">Fermer</button>
+        <div id="itemFormContainer" style="display: none;">
+            {{ form_start(form) }}
+            <div class="form-group">
+                {{ form_label(form.name) }}
+                {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.name) }}
+            </div>
+            <button type="submit" class="btn btn-success">Ajouter</button>
+            {{ form_end(form) }}
+        </div>
+
+        <h2>Items existants</h2>
+        <ul class="list">
+            {% for item in items %}
+                <li class="list-item">
+                    <span class="item-name">{{ item.name }}</span>
+                    <div class="item-actions">
+                      
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% else %}
+        <h1>Accès refusé</h1>
+    {% endif %}
+
+    <script>
+        document.getElementById('showItemFormButton').addEventListener('click', function() {
+            var formContainer = document.getElementById('itemFormContainer');
+            var hideButton = document.getElementById('hideItemFormButton');
+            formContainer.style.display = 'block';
+            hideButton.style.display = 'inline-block';
+            this.style.display = 'none';
+        });
+
+        document.getElementById('hideItemFormButton').addEventListener('click', function() {
+            var formContainer = document.getElementById('itemFormContainer');
+            var showButton = document.getElementById('showItemFormButton');
+            formContainer.style.display = 'none';
+            showButton.style.display = 'inline-block';
+            this.style.display = 'none';
+        });
+    </script>
+{% endblock %}

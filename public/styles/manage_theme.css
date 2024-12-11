@@ -1,0 +1,93 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container-category {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.container-category h1, .container h2 {
+    text-align: center;
+    color: #007bff;
+}
+
+.container-category .form-group {
+    margin-bottom: 15px;
+}
+
+.container-category .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+.container-category .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+}
+
+.container-category .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+.container-category .btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: #fff;
+}
+
+.container-category .btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+.container-category .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: #fff;
+}
+
+.container-category .btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.container-category .list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.container-category .list-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.container-category .list-item:last-child {
+    border-bottom: none;
+}
+
+.container-category .item-name {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.container-category .item-actions {
+    margin-top: 10px;
+}

@@ -2,24 +2,95 @@
 
 {% block title %}Gestion des Menus{% endblock %}
 
-{% block body %}
-    <h1>Gestion des Menus</h1>
-    {{ form_start(form) }}
-    <div class="form-group">
-        {{ form_label(form.name) }}
-        {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
-        {{ form_errors(form.name) }}
-    </div>
-    <button type="submit" class="btn btn-primary">Ajouter</button>
-    {{ form_end(form) }}
 
-    <h2>Menus existants</h2>
-    <ul>
-        {% for menu in menus %}
-            <li>
-                {{ menu.name }}
-                <a href="{{ path('menu_delete', {'id': menu.id}) }}" class="btn btn-danger">Supprimer</a>
-            </li>
-        {% endfor %}
-    </ul>
+
+{% block body %}
+{% if app.user and app.user.email == 'admin@restaurant.com' %}
+    <link rel="stylesheet" href="{{ asset('styles/menu_management_theme.css') }}">
+    <div class="menu-management-container">
+        <h1>Gestion des Menus</h1>
+        <button id="showMenuFormButton" class="btn-primary">Ajouter un menu</button>
+        <button id="hideMenuFormButton" class="btn btn-secondary btn-sm" style="display: none;">Fermer</button>
+        <div id="menuFormContainer" class="menu-form-container" style="display: none;">
+            {{ form_start(menuForm) }}
+            <div class="form-group">
+                {{ form_label(menuForm.name) }}
+                {{ form_widget(menuForm.name, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(menuForm.name) }}
+            </div>
+            <button type="submit" class="btn btn-success btn-sm">Ajouter</button>
+            {{ form_end(menuForm) }}
+        </div>
+
+        <button id="showCategoryFormButton" class="btn-primary">Ajouter une catégorie</button>
+        <button id="hideCategoryFormButton" class="btn btn-secondary btn-sm" style="display: none;">Fermer</button>
+        <div id="categoryFormContainer" class="category-form-container" style="display: none;">
+            {{ form_start(categoryForm) }}
+            <div class="form-group">
+                {{ form_label(categoryForm.name) }}
+                {{ form_widget(categoryForm.name, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(categoryForm.name) }}
+            </div>
+            <button type="submit" class="btn btn-success btn-sm">Ajouter</button>
+            {{ form_end(categoryForm) }}
+        </div>
+
+        <h2>Menus existants</h2>
+        <ul class="menu-list">
+            {% for menu in menus %}
+                <li class="menu-item">
+                    <a href="{{ path('menu_show', {'id': menu.id}) }}" class="menu-name">{{ menu.name }}</a>
+                    <a href="{{ path('menu_delete', {'id': menu.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h2>Catégories existantes</h2>
+        <ul class="category-list">
+            {% for category in categories %}
+                <li class="category-item">
+                    <a href="{{ path('category_manage', {'id': category.id}) }}" class="category-link">{{ category.name }}</a>
+                    <a href="{{ path('category_delete', {'id': category.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+     {% else %}
+        <h1>Accès refusé</h1>
+    {% endif %}
+
+    <script>
+        document.getElementById('showMenuFormButton').addEventListener('click', function() {
+            var formContainer = document.getElementById('menuFormContainer');
+            var hideButton = document.getElementById('hideMenuFormButton');
+            formContainer.style.display = 'block';
+            hideButton.style.display = 'inline-block';
+            this.style.display = 'none';
+        });
+
+        document.getElementById('hideMenuFormButton').addEventListener('click', function() {
+            var formContainer = document.getElementById('menuFormContainer');
+            var showButton = document.getElementById('showMenuFormButton');
+            formContainer.style.display = 'none';
+            showButton.style.display = 'inline-block';
+            this.style.display = 'none';
+        });
+
+        document.getElementById('showCategoryFormButton').addEventListener('click', function() {
+            var formContainer = document.getElementById('categoryFormContainer');
+            var hideButton = document.getElementById('hideCategoryFormButton');
+            formContainer.style.display = 'block';
+            hideButton.style.display = 'inline-block';
+            this.style.display = 'none';
+        });
+
+        document.getElementById('hideCategoryFormButton').addEventListener('click', function() {
+            var formContainer = document.getElementById('categoryFormContainer');
+            var showButton = document.getElementById('showCategoryFormButton');
+            formContainer.style.display = 'none';
+            showButton.style.display = 'inline-block';
+            this.style.display = 'none';
+        });
+    </script>
+    
 {% endblock %}

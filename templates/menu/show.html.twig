@@ -1,0 +1,25 @@
+{# templates/menu/show.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ menu.name }}{% endblock %}
+
+{% block body %}
+  {% if app.user and app.user.email == 'admin@restaurant.com' %}
+    <h1>{{ menu.name }}</h1>
+
+    <h2>Items</h2>
+    <ul>
+        {% for menuItem in menuItems %}
+            <li>{{ menuItem.item.name }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Ajouter un item</h2>
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+    {{ form_end(form) }}
+     {% else %}
+        <h1>Accès refusé</h1>
+    {% endif %}
+{% endblock %}
