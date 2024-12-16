@@ -13,6 +13,7 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    
     private ?int $customer_id = null;
 
     #[ORM\Column(length: 255)]
@@ -31,7 +32,7 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(type: 'json')]
-    private array $roles = []; // Initialisation par défaut à un tableau vide
+    private array $roles = []; 
 
     public function getCustomerId(): ?int
     {
@@ -117,4 +118,6 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->email;
     }
+
+    
 }

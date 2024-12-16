@@ -6,13 +6,15 @@
     <h1>Notre Menu</h1>
     <div class="menu-container">
         {% for menu in menus %}
-            <div class="menu-section">
-                <h2>{{ menu.name }}</h2>
-                {% for menuItem in menuItems %}
-                    {% if menuItem.menu.id == menu.id %}
-                        <li>{{ menuItem.item.name }}</li>
-                    {% endif %}
-                {% endfor %}
+            <div class="menu-section card">
+                <h2 class="menu-title">{{ menu.name }}</h2>
+                <ul class="menu-items">
+                    {% for menuItem in menuItems %}
+                        {% if menuItem.menu.id == menu.id %}
+                            <li class="menu-item">{{ menuItem.item.name }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
             </div>
         {% endfor %}
     </div>

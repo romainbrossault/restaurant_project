@@ -1,4 +1,3 @@
-{# templates/menu/show.html.twig #}
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ menu.name }}{% endblock %}
@@ -10,7 +9,10 @@
     <h2>Items</h2>
     <ul>
         {% for menuItem in menuItems %}
-            <li>{{ menuItem.item.name }}</li>
+            <li>
+                {{ menuItem.item.name }}
+                <a href="{{ path('menu_item_delete', {'menuId': menu.id, 'itemId': menuItem.item.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
+            </li>
         {% endfor %}
     </ul>
 
@@ -19,7 +21,7 @@
         {{ form_widget(form) }}
         <button type="submit" class="btn btn-primary">Ajouter</button>
     {{ form_end(form) }}
-     {% else %}
-        <h1>Accès refusé</h1>
-    {% endif %}
+  {% else %}
+    <h1>Accès refusé</h1>
+  {% endif %}
 {% endblock %}

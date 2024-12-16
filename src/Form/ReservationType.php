@@ -19,10 +19,16 @@ class ReservationType extends AbstractType
             ->add('reservationDate', DateType::class, [
                 'widget' => 'single_text',
                 'label' => 'Date de réservation',
+                'attr' => [
+                    'min' => (new \DateTime())->format('Y-m-d'),
+                ],
             ])
             ->add('reservationTime', TimeType::class, [
-                'widget' => 'single_text',
                 'label' => 'Heure de réservation',
+                'input' => 'datetime',
+                'widget' => 'choice',
+                'hours' => range(12, 22),
+                'minutes' => [0],
             ])
             ->add('guestCount', IntegerType::class, [
                 'label' => 'Nombre de personnes',

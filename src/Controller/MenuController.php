@@ -108,5 +108,18 @@ class MenuController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    #[Route('/menu/{menuId}/item/delete/{itemId}', name: 'menu_item_delete')]
+    public function deleteMenuItem(int $menuId, int $itemId, EntityManagerInterface $entityManager): Response
+    {
+        $menuItem = $entityManager->getRepository(MenuItem::class)->findOneBy(['menu' => $menuId, 'item' => $itemId]);
+
+        if ($menuItem) {
+            $entityManager->remove($menuItem);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('menu_show', ['id' => $menuId]);
+    }
 }
 

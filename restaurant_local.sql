@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 11 déc. 2024 à 11:03
+-- Généré le : lun. 16 déc. 2024 à 09:39
 -- Version du serveur : 8.0.31
 -- Version de PHP : 8.0.26
 
@@ -39,7 +39,6 @@ CREATE TABLE IF NOT EXISTS `category` (
 --
 
 INSERT INTO `category` (`id`, `name`) VALUES
-(1, 'CategoryTest'),
 (2, 'Starter'),
 (3, 'Desserts'),
 (4, 'Main courses'),
@@ -96,7 +95,8 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 ('DoctrineMigrations\\Version20241211083158', '2024-12-11 08:32:06', 51),
 ('DoctrineMigrations\\Version20241211083824', '2024-12-11 08:38:29', 62),
 ('DoctrineMigrations\\Version20241211084114', '2024-12-11 08:41:19', 68),
-('DoctrineMigrations\\Version20241211102800', '2024-12-11 10:39:35', 68);
+('DoctrineMigrations\\Version20241211102800', '2024-12-11 10:39:35', 68),
+('DoctrineMigrations\\Version20241216080448', '2024-12-16 08:05:09', 65);
 
 -- --------------------------------------------------------
 
@@ -111,20 +111,33 @@ CREATE TABLE IF NOT EXISTS `item` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_1F1B251E12469DE2` (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `item`
 --
 
 INSERT INTO `item` (`id`, `category_id`, `name`) VALUES
-(1, 1, 'ItemTest'),
-(2, 1, 'item02'),
 (3, 2, 'Duck Foie Gras'),
 (4, 2, 'French Onion Soup'),
 (6, 4, 'Beef bourguinon'),
 (7, 3, 'Assorted Macarons'),
-(8, 5, 'French Wines');
+(8, 5, 'French Wines'),
+(9, 3, 'Crème Brûlée'),
+(10, 3, 'Fruit Charlotte'),
+(11, 3, 'Tarte Tatin'),
+(12, 3, 'Chocolate Soufflé'),
+(13, 4, 'Coq au Vin'),
+(14, 4, 'Sole Meunière'),
+(15, 4, 'Duck Breast with Figs'),
+(16, 5, 'Champagne Glass/Bottle'),
+(17, 5, 'Cognac Glass/Bottle'),
+(18, 5, 'Kir Royal'),
+(19, 5, 'Pastis'),
+(20, 2, 'Burgundy Snails'),
+(21, 2, 'Scallop Tartare with Citrus and Caviar'),
+(22, 2, 'Goat Cheese Salad with Toasted Baguette'),
+(23, 4, 'Tournedos Rossini');
 
 -- --------------------------------------------------------
 
@@ -137,15 +150,18 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `menu`
 --
 
 INSERT INTO `menu` (`id`, `name`) VALUES
-(2, 'test'),
-(4, 'Best menu');
+(4, 'Best menu'),
+(5, 'The Frenchie'),
+(6, 'La Belle Epoque'),
+(7, 'Simple Pleasures'),
+(8, 'Prestige');
 
 -- --------------------------------------------------------
 
@@ -157,23 +173,36 @@ DROP TABLE IF EXISTS `menu_items`;
 CREATE TABLE IF NOT EXISTS `menu_items` (
   `menu_id` int NOT NULL,
   `item_id` int NOT NULL,
-  `id` int NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`menu_id`,`item_id`),
   KEY `IDX_70B2CA2ACCD7E912` (`menu_id`),
   KEY `IDX_70B2CA2A126F525E` (`item_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `menu_items`
 --
 
-INSERT INTO `menu_items` (`menu_id`, `item_id`, `id`) VALUES
-(2, 1, 1),
-(2, 2, 2),
-(4, 3, 3),
-(4, 6, 4),
-(4, 7, 5),
-(4, 8, 6);
+INSERT INTO `menu_items` (`menu_id`, `item_id`) VALUES
+(2, 2),
+(4, 3),
+(4, 6),
+(4, 7),
+(5, 4),
+(5, 6),
+(5, 8),
+(5, 11),
+(6, 9),
+(6, 15),
+(6, 17),
+(6, 21),
+(7, 7),
+(7, 13),
+(7, 19),
+(7, 20),
+(8, 12),
+(8, 18),
+(8, 22),
+(8, 23);
 
 -- --------------------------------------------------------
 
@@ -212,7 +241,44 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `guest_count` int NOT NULL,
   `special_requests` longtext COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `reservation`
+--
+
+INSERT INTO `reservation` (`id`, `customer_id`, `table_id`, `reservation_date`, `reservation_time`, `guest_count`, `special_requests`) VALUES
+(3, 2, 1, '2024-12-18', '12:17:00', 12, 'aucune'),
+(4, 2, 1, '2024-12-16', '21:00:00', 1, 'Table de 8 meme si je suis seul'),
+(5, 3, 1, '2024-12-20', '14:00:00', 2, 'mariage');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `restaurant_table`
+--
+
+DROP TABLE IF EXISTS `restaurant_table`;
+CREATE TABLE IF NOT EXISTS `restaurant_table` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `number` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `restaurant_table`
+--
+
+INSERT INTO `restaurant_table` (`id`, `number`) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8),
+(9, 9);
 
 --
 -- Contraintes pour les tables déchargées

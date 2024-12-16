@@ -28,7 +28,7 @@
                 <li class="list-item">
                     <span class="item-name">{{ item.name }}</span>
                     <div class="item-actions">
-                      
+                        <a href="{{ path('category_item_delete', {'categoryId': category.id, 'itemId': item.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
                     </div>
                 </li>
             {% endfor %}
