@@ -4,23 +4,29 @@
 
 {% block body %}
   {% if app.user and app.user.email == 'admin@restaurant.com' %}
-    <h1>{{ menu.name }}</h1>
+  <link rel="stylesheet" href="{{ asset('styles/menu-edit.css') }}">
+    <div class="menu-show-container">
+        <a href="{{ path('menu_ges') }}" class="btn btn-secondary">Retour</a>
+        <h1>{{ menu.name }}</h1>
 
-    <h2>Items</h2>
-    <ul>
-        {% for menuItem in menuItems %}
-            <li>
-                {{ menuItem.item.name }}
-                <a href="{{ path('menu_item_delete', {'menuId': menu.id, 'itemId': menuItem.item.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
-            </li>
-        {% endfor %}
-    </ul>
+        <h2>Items</h2>
+        <ul class="menu-items">
+            {% for menuItem in menuItems %}
+                <li class="menu-item">
+                    {{ menuItem.item.name }}
+                    <a href="{{ path('menu_item_delete', {'menuId': menu.id, 'itemId': menuItem.item.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
+                </li>
+            {% endfor %}
+        </ul>
 
-    <h2>Ajouter un item</h2>
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <button type="submit" class="btn btn-primary">Ajouter</button>
-    {{ form_end(form) }}
+        <h2>Ajouter un item</h2>
+        <div class="form-container">
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
   {% else %}
     <h1>Accès refusé</h1>
   {% endif %}
